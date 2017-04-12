@@ -1,5 +1,5 @@
 <?php
-namespace Escapeboy\AdminUsers;
+namespace LaraMod\AdminUsers;
 
 use App\Http\Controllers\Controller;
 use App\User;

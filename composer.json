@@ -1,0 +1,16 @@
+{
+    "name": "LaraMod/admin-users",
+    "description": "LaraMod Admin Users Module",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikola Katsarov",
+            "email": "katsarov@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "escapeboy/admin-core": "dev"
+    }
+}

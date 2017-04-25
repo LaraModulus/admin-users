@@ -13,7 +13,7 @@ composer require laramod\admin-users
 ```php 
 'providers' => [
     ...
-    LaraMod\AdminUsers\AdminUsersServiceProvider::class,
+    LaraMod\Admin\Users\AdminUsersServiceProvider::class,
 ]
 ```
 

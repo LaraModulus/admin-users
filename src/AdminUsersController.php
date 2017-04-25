@@ -1,9 +1,8 @@
 <?php
-namespace LaraMod\AdminUsers;
+namespace LaraMod\Admin\Users;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;

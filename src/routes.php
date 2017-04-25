@@ -3,7 +3,7 @@
 Route::group([
     'prefix' => 'admin/users',
     'middleware' => ['web', 'auth'],
-    'namespace' => 'LaraMod\AdminUsers',
+    'namespace' => 'LaraMod\Admin\Users',
 ], function(){
     Route::get('/', ['as' => 'admin.users', 'uses' => 'AdminUsersController@index']);
     Route::get('/form', ['as' => 'admin.users.form', 'uses' => 'AdminUsersController@getForm']);

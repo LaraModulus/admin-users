@@ -1,6 +1,6 @@
 <?php
 
-namespace LaraMod\AdminUsers;
+namespace LaraMod\Admin\Users;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +15,7 @@ class AdminUsersServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/views', 'adminusers');
         $this->publishes([
-            __DIR__.'/views' => base_path('resources/views/laramod/admin-users'),
+            __DIR__.'/views' => base_path('resources/views/laramod/admin/users'),
         ]);
 
     }

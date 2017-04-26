@@ -1,4 +1,4 @@
-LaraMod Admin Users 0.1 Alpha
+LaraMod Admin Users 0.2 Alpha
 ----------------------------
 LaraMod is a modular Laravel based CMS.
 https://github.com/LaraModulus

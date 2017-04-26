@@ -2,12 +2,24 @@
 
 Route::group([
     'prefix' => 'admin/users',
-    'middleware' => ['web', 'auth'],
-    'namespace' => 'LaraMod\Admin\Users',
+    'middleware' => ['admin', 'auth.admin'],
+    'namespace' => 'LaraMod\Admin\Users\Controllers',
 ], function(){
-    Route::get('/', ['as' => 'admin.users', 'uses' => 'AdminUsersController@index']);
-    Route::get('/form', ['as' => 'admin.users.form', 'uses' => 'AdminUsersController@getForm']);
-    Route::post('/form', ['as' => 'admin.users.form', 'uses' => 'AdminUsersController@postForm']);
+    Route::get('/', ['as' => 'admin.users', 'uses' => 'UsersController@index']);
+    Route::get('/form', ['as' => 'admin.users.form', 'uses' => 'UsersController@getForm']);
+    Route::post('/form', ['as' => 'admin.users.form', 'uses' => 'UsersController@postForm']);
 
-    Route::get('/delete', ['as' => 'admin.users.delete', 'uses' => 'AdminUsersController@delete']);
+    Route::get('/delete', ['as' => 'admin.users.delete', 'uses' => 'UsersController@delete']);
+});
+
+Route::group([
+    'prefix' => 'admin/admins',
+    'middleware' => ['admin', 'auth.admin'],
+    'namespace' => 'LaraMod\Admin\Users\Controllers',
+], function(){
+    Route::get('/', ['as' => 'admin.admins', 'uses' => 'AdminsController@index']);
+    Route::get('/form', ['as' => 'admin.admins.form', 'uses' => 'AdminsController@getForm']);
+    Route::post('/form', ['as' => 'admin.admins.form', 'uses' => 'AdminsController@postForm']);
+
+    Route::get('/delete', ['as' => 'admin.admins.delete', 'uses' => 'AdminsController@delete']);
 });

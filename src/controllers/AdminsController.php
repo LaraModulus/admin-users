@@ -1,31 +1,31 @@
 <?php
-namespace LaraMod\Admin\Users;
+namespace LaraMod\Admin\Users\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use LaraMod\Admin\Core\Models\Admin;
 
-class AdminUsersController extends Controller
+class AdminsController extends Controller
 {
 
     private $data = [];
     public function __construct()
     {
-        config()->set('admincore.menu.users.active', true);
+        config()->set('admincore.menu.admins.active', true);
     }
     public function index()
     {
-        $this->data['users'] = User::paginate(20);
-        return view('adminusers::users.list', $this->data);
+        $this->data['users'] = Admin::paginate(20);
+        return view('adminusers::admins.list', $this->data);
     }
 
     public function getForm(Request $request)
     {
-        $this->data['user'] = $request->has('id') ? User::find($request->get('id')) : new User();
+        $this->data['user'] = $request->has('id') ? Admin::find($request->get('id')) : new Admin();
 
-        return view('adminusers::users.form', $this->data);
+        return view('adminusers::admins.form', $this->data);
     }
 
     public function postForm(Request $request)
@@ -35,13 +35,13 @@ class AdminUsersController extends Controller
             'password' => 'confirmed'
         ]);
         if ($validator->fails()) {
-            return redirect()->route('admin.users.form')
+            return redirect()->route('admin.admins.form')
                 ->withErrors($validator)
                 ->withInput();
         }
 
 
-        $user = $request->has('id') ? User::find($request->get('id')) : new User();
+        $user = $request->has('id') ? Admin::find($request->get('id')) : new Admin();
         try{
             $user->name = $request->get('name');
             $user->email = $request->get('email');
@@ -53,7 +53,7 @@ class AdminUsersController extends Controller
             return redirect()->back()->withInput()->withErrors(['message' => $e->getMessage()]);
         }
 
-        return redirect()->route('admin.users')->with('message', [
+        return redirect()->route('admin.admins')->with('message', [
             'type' => 'success',
             'text' => 'User saved.'
         ]);
@@ -61,21 +61,21 @@ class AdminUsersController extends Controller
 
     public function delete(Request $request){
         if(!$request->has('id')){
-            return redirect()->route('admin.users')->with('message', [
+            return redirect()->route('admin.admins')->with('message', [
                 'type' => 'danger',
                 'text' => 'No ID provided!'
             ]);
         }
         try {
-            User::find($request->get('id'))->delete();
+            Admin::find($request->get('id'))->delete();
         }catch (\Exception $e){
-            return redirect()->route('admin.users')->with('message', [
+            return redirect()->route('admin.admins')->with('message', [
                 'type' => 'danger',
                 'text' => $e->getMessage()
             ]);
         }
 
-        return redirect()->route('admin.users')->with('message', [
+        return redirect()->route('admin.admins')->with('message', [
             'type' => 'success',
             'text' => 'User deleted'
         ]);

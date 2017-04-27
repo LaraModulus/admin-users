@@ -10,6 +10,7 @@ Route::group([
     Route::post('/form', ['as' => 'admin.users.form', 'uses' => 'UsersController@postForm']);
 
     Route::get('/delete', ['as' => 'admin.users.delete', 'uses' => 'UsersController@delete']);
+    Route::get('/datatable', ['as' => 'admin.users.datatable', 'uses' => 'UsersController@dataTable']);
 });
 
 Route::group([
@@ -22,4 +23,5 @@ Route::group([
     Route::post('/form', ['as' => 'admin.admins.form', 'uses' => 'AdminsController@postForm']);
 
     Route::get('/delete', ['as' => 'admin.admins.delete', 'uses' => 'AdminsController@delete']);
+    Route::get('/datatable', ['as' => 'admin.admins.datatable', 'uses' => 'AdminsController@dataTable']);
 });

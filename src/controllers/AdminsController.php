@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use LaraMod\Admin\Core\Models\Admin;
+use Yajra\Datatables\Datatables;
 
 class AdminsController extends Controller
 {
@@ -79,6 +80,20 @@ class AdminsController extends Controller
             'type' => 'success',
             'text' => 'User deleted'
         ]);
+    }
+
+    public function dataTable(){
+        $items = Admin::select(['id','name', 'email', 'created_at']);
+        return DataTables::of($items)
+            ->addColumn('action', function($item){
+                return '<a href="'.route('admin.admins.form', ['id' => $item->id]).'" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>'
+                    .'<a href="'.route('admin.admins.delete', ['id' => $item->id]).'" class="btn btn-danger btn-xs require-confirm"><i class="fa fa-trash"></i></a>';
+            })
+            ->editColumn('created_at', function($item){
+                return $item->created_at->format('d.m.Y H:i');
+            })
+            ->orderColumn('created_at $1','id $1')
+            ->make('true');
     }
 
 

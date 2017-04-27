@@ -11,7 +11,9 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="table-responsive">
-                	<table class="table table-striped">
+                    <table class="table table-striped" id="items_table"
+                           data-page-length="10"
+                    >
                 		<thead>
                             <tr>
                                 <td colspan="4">
@@ -22,32 +24,36 @@
                 				<th>#</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Created date</th>
                                 <th><i class="fa fa-cogs"></i></th>
                 			</tr>
                 		</thead>
-                		<tbody>
-                        @foreach($users as $user)
-                			<tr>
-                				<td>
-                                    {{$user->id}}
-                                </td>
-                                <td>
-                                    {{$user->name}}
-                                </td>
-                                <td>
-                                    {{$user->email}}
-                                </td>
-                                <td>
-                                    <a href="{{route('admin.users.form', ['id' => $user->id])}}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{route('admin.users.delete', ['id' => $user->id])}}" class="btn btn-danger btn-xs confirm"><i class="fa fa-trash"></i></a>
-                                </td>
-                			</tr>
-                        @endforeach
-                		</tbody>
+
                 	</table>
                 </div>
             </div>
         </div>
 
     </div>
+@stop
+@section('js')
+    <script type="text/javascript">
+        $(function(){
+            $('#items_table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('admin.users.datatable') !!}',
+                order: [
+                    [4, 'desc']
+                ],
+                columns: [
+                    {data:'id', name: 'ID'},
+                    {data:'name', name: 'name'},
+                    {data:'email', name:'email'},
+                    {data:'created_at', searchable:false},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                ]
+            });
+        });
+    </script>
 @stop

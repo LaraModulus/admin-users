@@ -13,9 +13,9 @@ class AdminUsersServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/views', 'adminusers');
+        $this->loadViewsFrom(__DIR__ . '/views', 'adminusers');
         $this->publishes([
-            __DIR__.'/views' => base_path('resources/views/laramod/admin/users'),
+            __DIR__ . '/views' => base_path('resources/views/laramod/admin/users'),
         ]);
 
     }
@@ -27,6 +27,6 @@ class AdminUsersServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        include __DIR__.'/routes.php';
+        include __DIR__ . '/routes.php';
     }
 }

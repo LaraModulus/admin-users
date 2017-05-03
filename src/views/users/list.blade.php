@@ -44,7 +44,7 @@
                 serverSide: true,
                 ajax: '{!! route('admin.users.datatable') !!}',
                 order: [
-                    [4, 'desc']
+                    [3, 'desc']
                 ],
                 columns: [
                     {data: 'id', name: 'ID'},
